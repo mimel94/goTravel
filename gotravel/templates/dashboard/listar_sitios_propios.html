@@ -1,0 +1,33 @@
+{% extends 'dashboard/index.html' %}
+{% block titulo%}Actualizar cliente {% endblock titulo%}
+{% block cuerpo%}
+<div class="container-fluid">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-6 p-md-0">
+            <div class="welcome-text">
+                <h4>Mis Sitios</h4>                
+            </div>
+        </div>        
+    </div>
+    
+    <div class="row">
+        {% for sitio in object_list %}
+        <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+            <div class="card mb-3">
+                <img class="card-img-top img-fluid" src="/media/{{sitio.album_url}}" alt="{{sitio.nombre}}" style="height: 250px;">
+                <div class="card-header">
+                    <h5 class="card-title">{{sitio.nombre}}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{sitio.descripcion}}</p>                    
+                </div>                
+                <a href="{% url 'actualizar_sitio' sitio.pk %}" class="btn btn-primary" >actualizar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{%endblock cuerpo%}

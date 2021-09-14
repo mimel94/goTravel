@@ -15,13 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from apps.controlUsuarios.views import Login, CrearUsuario, logout_usuario, Dashboard
+from apps.sitios.views import CrearSitio, ListarSitiosPropios, ActualizarSitio, Index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',Index.as_view(), name='index'),
+
     path('crearUsuario/', CrearUsuario.as_view(), name='crear_usuario'),    
     path("accounts/login/",Login.as_view(),name='login'),
     path("logout/",login_required(logout_usuario), name="logout"),
     path("dashboard/",Dashboard.as_view(),name="dashboard"),
+
+    path("dashboard/crear-sitio/",CrearSitio.as_view(),name="crear_sitio"),
+    path("dashboard/listar-sitios/",ListarSitiosPropios.as_view(),name="listar_sitios_propios"),
+    path("dashboard/actualizar-sitio/<int:pk>/",ActualizarSitio.as_view(),name="actualizar_sitio"),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

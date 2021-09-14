@@ -41,22 +41,22 @@
   <header id="header">
     <div class="container d-flex ">
       <div class="logo">       
-        <a href="index.html"><img src="/static/img/logo.png" alt="" class="img-fluid"></a>
+        <a href="{% url 'index' %}"><img src="/static/img/logo.png" alt="" class="img-fluid"></a>
       </div>
 
       <div class="logo mr-auto">       
         
-        <h1 class="text-light"><a href="index.html"><span>GO TRAVEL</span></a></h1>
+        <h1 class="text-light"><a href="{% url 'index' %}"><span>GO TRAVEL</span></a></h1>
         
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="#">Inicio</a></li>          
+          <li class="active"><a href="{% url 'index' %}">Lugares</a></li>          
           <!-- <li><a href="#servicios">Servicios</a></li>          
           <li><a href="#">Planes</a></li>           -->
-          <li><a href="#contactanos">Contactanos</a></li>
-          <li><a href="{% url 'login' %}">Login <i class="icofont-ui-user"></i> </a></li>
+          <li><a href="#contactanos">Registrate</a></li>
+          <li><a href="{% url 'login' %}">Inicia Sesión <i class="icofont-ui-user"></i> </a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -72,37 +72,29 @@
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
         <div class="carousel-inner" role="listbox">
-
+          
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background: url(/static/img/slide/slide-1.jpg)">
+          <div class="carousel-item active" style="background: url(/media/{{object_list.0.album_url}})">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Bienvenidos a <span>Power Gym</span></h2>
-                <p class="animate__animated animate__fadeInUp">El lugar perfecto donde podras entrenar a gusto y sacar lo mejor de tu cuerpo!</p>
+                <h2 class="animate__animated animate__fadeInDown">Bienvenidos a <span>Go Travel</span></h2>
+                <p class="animate__animated animate__fadeInUp">El lugar perfecto donde podras encontrar tu lugar de descanso!</p>
                 
               </div>
             </div>
           </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" style="background: url(/static/img/slide/slide-2.jpg)">
+          {% for sitio in object_list %}
+          <div class="carousel-item" style="background: url(/media/{{sitio.album_url}})">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Entrenadores <span>Personalizados</span></h2>
-                <p class="animate__animated animate__fadeInUp">Contamos con los mejores entrenadores, unicos con certificados internacionales.</p>                
+                <!-- <h2 class="animate__animated animate__fadeInDown">Bienvenidos a <span>Go Travel</span></h2>
+                <p class="animate__animated animate__fadeInUp">El lugar perfecto donde podras encontrar tu lugar de descanso!</p> -->
+                
               </div>
             </div>
           </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-item" style="background: url(/static/img/slide/slide-3.jpg)">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Maquinas <span>De ultima tecnologia y calidad</span></h2>
-                <p class="animate__animated animate__fadeInUp">Contamos con Maquinas y pesas unicas en el mercado que te daran la confiabilidad necesaria para realizar cualquier entrenamiento.</p>
-              </div>
-            </div>
-          </div>
+          {%endfor%}
+          
 
         </div>
 
@@ -121,96 +113,61 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
-    <!-- ======= Featured Section ======= -->
-    <section id="featured" class="featured">
+  
+    <section>
       <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="icon-box">
-              <i class="icofont-computer"></i>
-              <h3><a href="">Clases Virtuales</a></h3>
-              <p>Contamos con clases totalmente remotas y personalizadas para las personas que lo prefieren.</p>
+        <div class="col-xl-12 col-xxl-12 ">
+          <div class="card" style="margin-top: 150px;">
+            <div class="card-header">
+                <h4 class="card-title">Encuentra tu sitio</h4>
             </div>
-          </div>
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="icofont-gym-alt-2"></i>
-              <h3><a href="">Clases Personalizadas</a></h3>
-              <p>Contamos con clases totalmente personalizadas, logra tus objetivos en cortos periodos de tiempo.</p>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Ciudad">
+                            </div>
+                            <div class="col mt-2 mt-sm-0">
+                                <input type="text" class="form-control" placeholder="Tipo">
+                            </div>
+                            <div class="col mt-2 mt-sm-0">
+                              <a href="" class="btn btn-primary " style="background-color: #e96b56;border-color: #e96b56;">Buscar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="icofont-heart-alt"></i>
-              <h3><a href="">Salud primero</a></h3>
-              <p>Contamos con los mejores metodos de Auto-Cuidado para protegerte a ti en todo momento.</p>
-            </div>
-          </div>
         </div>
-
       </div>
-    </section><!-- End Featured Section -->
-
+    </section>
     
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
 
         <div id="servicios" class="section-title" data-aos="fade-up">
-          <h2>Nuestros Servicios</h2>
+          <h2>Nuestros Sitios</h2>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Indoor Cycling</a></h4>
-              <p>Pedalear en un espacio provisto de luces, música y la asesoría de entrenadores que sacarán lo mejor de ti es lo que te espera en el salón de indoor cycling con clases de ciclismo bajo techo para todos los gustos y condiciones físicas.</p>
+          <div class="container-fluid">           
+            
+            <div class="row">
+                {% for sitio in object_list %}
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="card mb-3">
+                        <img class="card-img-top img-fluid" src="/media/{{sitio.album_url}}" alt="{{sitio.nombre}}" style="height: 250px;">
+                        <div class="card-header">
+                            <h5 class="card-title">{{sitio.nombre}}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{sitio.descripcion}}</p>                    
+                        </div>                                        
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Evaluacion clinica</a></h4>
-              <p>Una completa evaluación sobre tu condición y cualidades físicas te permite establecer objetivos claros que alcanzarás con un programa de entrenamiento diseñado a tu medida..</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Zona Cardiovascular</a></h4>
-              <p>Una completa variedad de máquinas y equipos cardiovasculares están disponibles para que entrenes tu corazón mientras disfrutas tus contenidos favoritos en televisión por cable o a través de la conexión a tus dispositivos.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Zona de musculación</a></h4>
-              <p>El tono muscular que siempre has querido obtener, lo podrás lograr con la asesoría de nuestros entrenadores en modernos equipos de peso asistido y libre en amplias y cómodos espacios.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Clases grupales</a></h4>
-              <p>El entrenamiento grupal es más divertido y de una efectividad extrema. Compruébalo en el salón de clases grupales y disfruta sesiones de combate, aeróbicos, baile o meditación</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Zonas húmedas</a></h4>
-              <p>Recupera tu cuerpo, elimina toxinas y relájate en zonas húmedas con turco y sauna. Recuerda consultar el protocolo y los horarios para disfrutar este espacio.</p>
-            </div>
-          </div>
-
         </div>
 
       </div>

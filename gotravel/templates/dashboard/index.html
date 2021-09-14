@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{% block titulo %}Dashboard Power Gym{% endblock titulo%} </title>
+    <title>{% block titulo %}Go Travel{% endblock titulo%} </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/static/dashboard/images/favicon.png">
     <link rel="stylesheet" href="/static/dashboard/vendor/owl-carousel/css/owl.carousel.min.css">
@@ -111,8 +111,8 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Sitios</span></a>
                         <ul aria-expanded="false">
                             
-                            <li><a href="#">Mis Sitios</a></li>
-                            <li><a href="#">Crear Sitio</a></li>
+                            <li><a href="{% url 'listar_sitios_propios' %}">Mis Sitios</a></li>
+                            <li><a href="{% url 'crear_sitio' %}">Crear Sitio</a></li>
                         </ul>
                     </li>
 

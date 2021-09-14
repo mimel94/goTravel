@@ -1,0 +1,46 @@
+{% extends 'dashboard/index.html' %}
+{% block titulo%}Actualizar cliente {% endblock titulo%}
+{% block cuerpo%}
+<section id="formulario">
+    <div class="container">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Crear Sitio</h4>                
+                </div>
+            </div>        
+        </div>
+        <form  method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            
+            <div class="form-group col">              
+                {{form.nombre.label}}
+                {{form.nombre}}
+            </div>
+            <div class="form-group col">              
+                {{form.ciudad.label}}
+                {{form.ciudad}}
+            </div>
+            <div class="form-group col">              
+                {{form.descripcion.label}}
+                {{form.descripcion}}
+            </div>            
+            <div class="form-group col">              
+                {{form.album_url.label}}
+                {{form.album_url}}
+            </div>
+
+            {{form.errors}}      
+              
+              
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+
+    </div>
+
+</section>
+
+
+
+
+{%endblock cuerpo%}
