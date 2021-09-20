@@ -1,0 +1,144 @@
+{% extends 'web/index.html' %}
+{% load extras %}
+{% block titulo%}Crear Titulo {% endblock titulo%}
+{% block cuerpo%}   
+<style>
+   #form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: rgb(88, 86, 82);
+
+  
+}
+.article text {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+    background: #889ccf;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+}
+</style> 
+<section id="formulario">
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                            <div class="custom-tab-1">                                
+                                <div class="tab-content">
+                                    <div id="my-posts" class="tab-pane fade active show">
+                                        <div class="my-post-content pt-3">                                           
+                                            <div class="profile-uoloaded-post border-bottom-1 pb-5">                                                
+                                                <img src="/media/{{object.album_url}}" alt="" class="img-fluid">                                                
+                                                <h4 style="color:#e96b56 ;">{{object.nombre}}</h4>                                                
+                                                <p>{{object.descripcion}}</p>                                                
+                                                
+                                                <p class="clasificacion">   
+                                                                                                 
+                                                    {% if cantidad == 0%}
+                                                        <h5>calificacion: {{puntuacion}}</h5> 
+                                                    {% else %}
+                                                        <h5>calificacion: {% divide puntuacion cantidad %}</h5> 
+                                                    {% endif %}
+                                                    <button onclick="puntuacion(1)">1</button>
+                                                    <button onclick="puntuacion(2)">2</button>
+                                                    <button onclick="puntuacion(3)">4</button>
+                                                    <button onclick="puntuacion(4)">3</button>
+                                                    <button onclick="puntuacion(5)">5</button>
+                                                </p>
+                                                <div>
+                                                    <h5>Comentarios</h5>
+                                                    <div id="comentarios">
+                                                        
+                                                    </div>
+                                                    <form method="post" action="{% url 'dejar_comentario'%}" id="dejar_comentario">  
+                                                        {% csrf_token %}     
+                                                        <input type="hidden" name="usuario" value={{user.id}}> 
+                                                        <input type="hidden" name="sitio" value="{{object.id}}">
+                                                        <textarea name="comentario" id="comentario" cols="30" rows="5" class="form-control bg-transparent" placeholder="Deja tu comentario...."></textarea> 
+                                                        <br><button onclick="guardarComentario" class="btn btn-primary"  style="background-color: #e96b56;border-color: #e96b56;">Enviar comentario</button>
+                                                    </form>
+                                                </div>
+                                            </div>                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+    </div>
+
+</section>
+
+<script>  
+    var id_sitio = {{object.id}};  
+    var id_user = {{user.id}}  
+    function guardarComentario(){
+        $.ajax({
+            data:$('#dejar_comentario').serialize(),
+            url: $('#dejar_comentario').attr("action"),
+            type: $('#dejar_comentario').attr("method"),
+            success: function(response){
+                window.location('/web/listar_comentarios/'+response.id_sitio+"/")
+            },
+            error: function(error){
+                console.log(error)
+            }
+
+        })
+    }
+    function puntuacion(valor){
+        $.ajax({
+            data:{'valor':valor,'sitio':id_sitio,'usuario':id_user},
+            url: '/web/puntuacion/',
+            type: 'get',
+            success: function(response){
+                console.log(response)
+            },
+            error: function(error){
+                console.log(error)
+            }
+
+        })
+    }
+</script>
+
+{%endblock cuerpo%}

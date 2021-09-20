@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from apps.controlUsuarios.views import Login, CrearUsuario, logout_usuario, Dashboard
-from apps.sitios.views import CrearSitio, ListarSitiosPropios, ActualizarSitio, Index
+from apps.sitios.views import CrearSitio, ListarSitiosPropios, ActualizarSitio, Index, MostrarSitio, crearComentario, ListarComentarios, Puntuacion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +33,13 @@ urlpatterns = [
     path("dashboard/crear-sitio/",CrearSitio.as_view(),name="crear_sitio"),
     path("dashboard/listar-sitios/",ListarSitiosPropios.as_view(),name="listar_sitios_propios"),
     path("dashboard/actualizar-sitio/<int:pk>/",ActualizarSitio.as_view(),name="actualizar_sitio"),
+
+    path("web/detalle-sitio/<int:pk>/",MostrarSitio.as_view(), name="detalle_sitio_publico"),
+    path("web/listar_comentarios/",ListarComentarios.as_view(), name="listar_comentarios"),
+
+
+    path("web/crearComentario/",crearComentario.as_view(),name="dejar_comentario"),
+    path("web/puntuacion/",Puntuacion.as_view(),name="puntuacion"),
 
 ]
 

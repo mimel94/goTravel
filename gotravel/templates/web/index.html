@@ -163,7 +163,8 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{sitio.descripcion}}</p>                    
-                        </div>                                        
+                        </div>  
+                        <a href="{% url 'detalle_sitio_publico' sitio.pk %}" class="btn btn-primary"   style="background-color: #e96b56;border-color: #e96b56;" >Ver mas</a>                                     
                     </div>
                 </div>
                 {% endfor %}

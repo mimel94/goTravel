@@ -50,8 +50,47 @@
           scrollTop: scrollto
         }, 1500, 'easeInOutExpo');
       }
+
     }
-  });
+    listarComentario()
+  });  
+  
+  function listarComentario(){
+    
+    $.ajax({     
+      url: '/web/listar_comentarios/',
+      data: {
+        'sitio': id_sitio,
+      },
+      type: 'get',
+      dataType: 'json',
+      success: function(response){
+          console.log("cometarios: ",response)
+          var coment = $('#comentarios');
+          coment.empty();
+          console.log("ALgo2")
+          $.each(response, function(index, value) {
+              //append every node instead of replacing it with your markup
+              console.log("ALgo",value)
+              coment.append(
+                  '<div class="article text" style="border-radius: 35px 0px 35px 0px;-moz-border-radius: 35px 0px 35px 0px;-webkit-border-radius: 35px 0px 35px 0px;border: 2px solid #e96b56;font-family: sans-serif;font-size: 18px;font-weight: 400;color: #ffffff;background: #F18872;margin: 0 0 25px;overflow: hidden;padding: 20px;">' +
+                    '<span class="format text alignRight"></span>' +                    
+                    '<h3 style="margin-left:15px;">' + value.usuario+ '</h3>' +
+                    '<p style="margin-left:5px;">' + value.comentario + '</p>' +
+                  '</div>'
+              );
+
+            
+        });
+
+
+      },
+      error: function(error){
+          console.log("errores_comentarios",error)
+      }
+
+  })
+}
 
   // Mobile Navigation
   if ($('.nav-menu').length) {
