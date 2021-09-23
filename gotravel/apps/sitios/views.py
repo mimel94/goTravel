@@ -137,7 +137,7 @@ class ListarComentarios(TemplateView):
             return render(request, self.template_name)
         
         return HttpResponse(data,'application/json')
-    
+
     # def post(self, request, *args, **kwargs) :      
     #     id_sitio = request.POST.get("sitio")
     #     user = Usuario.objects.get(id=request.POST.get("usuario"))
@@ -160,3 +160,6 @@ class ListarComentarios(TemplateView):
     #     response.status_code = 201
             
     #     return HttpResponse(response)
+
+class Documentacion(TemplateView):
+    template_name = "web/documentacion.html"

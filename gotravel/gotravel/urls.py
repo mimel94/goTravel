@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from apps.controlUsuarios.views import Login, CrearUsuario, logout_usuario, Dashboard
-from apps.sitios.views import CrearSitio, ListarSitiosPropios, ActualizarSitio, Index, MostrarSitio, crearComentario, ListarComentarios, Puntuacion
+from apps.sitios.views import CrearSitio, ListarSitiosPropios, ActualizarSitio, Index, MostrarSitio, crearComentario, ListarComentarios, Puntuacion, Documentacion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +40,8 @@ urlpatterns = [
 
     path("web/crearComentario/",crearComentario.as_view(),name="dejar_comentario"),
     path("web/puntuacion/",Puntuacion.as_view(),name="puntuacion"),
+
+    path("documentacion/",Documentacion.as_view(), name="documentacion" ),
 
 ]
 

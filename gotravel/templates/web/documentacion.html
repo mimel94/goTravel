@@ -1,0 +1,115 @@
+{% extends 'web/index.html' %}
+{% load extras %}
+{% block titulo%}Documentación{% endblock titulo%}
+{% block cuerpo%}   
+<style>
+   #form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: rgb(88, 86, 82);
+
+  
+}
+.article text {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+    background: #889ccf;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+}
+.pre {
+    white-space: pre;
+    display: block;
+    overflow: auto;
+    background-color: #404040;
+    color: #ffffff;
+    padding: 10px 5px 5px 5px;
+    width: 50%;
+}
+</style> 
+<section id="formulario">
+    <div class="container" style="margin-top: 50px;">
+        <h1>Documentación</h1>
+        <br><br>
+        <h2>Tutorial</h2>
+
+        <p>A continuacion encontraremos la manera en como debemos registrarnos en la plataforma: </p>
+        <ul>
+            <li>1) Ingresamos al siguiente enlace <a href="{% url 'crear_usuario' %}">Registro</a></li>
+            <li>2) Ingresamos nuestros datos: <br>-Nombre <br>-apellido <br>-Tipo de documento <br>-No. Documento <br>-Edad <br>-Nombre de usuario <br>-Email <br>-Contraseña <br>Ocupación</li>
+            <li>3) Presionamos el boton enviar para registrarnos</li>
+            <li>4) Ingresamos al login en el siguiente enlace <a href="{% url 'login' %}"></a> e ingresamos al sistema</li>
+        </ul>
+        <br><br>
+        <h2>Guia en el dashboard</h2>
+        <br><br>
+        <h3>Crear Un sitio turistico</h3>
+        <ul>
+            <li>1) nos dirigimos al panel Sitios en la parte izquierda y le damos click a Crear sitio</li>
+            <br>
+            <div>
+                <img src="/static/img/guia1.PNG" alt="">
+            </div><br>
+            <li>2)Llenaremos los datos: Nombre, Ciudad, Descripción y cargaremos una foto del sitio: </li><br>
+            <div>
+                <img src="/static/img/guia2.PNG" style="width: 95%;" alt="">
+            </div><br>
+            <li>Una vez se haya guardado el sitio, se nos redireccionara a la lista de nuestros sitios creados.</li><br>
+            <div>
+                <img src="/static/img/guia3.PNG" style="width: 95%;"alt="">
+            </div><br>
+        </ul>
+        <br><br>
+        <h2>Guia de referencia tecnica</h2>
+        <br><br>
+        <h3>Como decargar y configurar el proyecto</h3>
+        <ul>
+            <li>1) Descargamos el proyecto en github en el siguiente enlace <a href="https://github.com/mimel94/goTravel">goTravel project</a></li>
+            <li>2) Una vez descargado debemos montar un ambiente de desarrollo bajo python version 3.8</li>
+            <li>3) una vez en el ambiente debemos instalar los requerimientos del sistema con el siguiente comando</li>
+            <div class="pre"><p > pip install -r requirements.txt </p></div>
+            <li>4) una vez instalado todos los requerimientos, nos ubicamos en la raiz del proyecto y levantamos el servidor de Django </li>
+            <div class="pre"><p > python manage.py runserver </p></div>
+            <li>5) si todo ah salido exitosamente debemos ver la siguiente imagen</li><br>
+            <div>
+                <img src="/static/img/rundjango.PNG" style="width: 95%;"alt="">
+            </div><br>
+        </ul>
+
+
+    </div>
+
+</section>
+
+
+
+{%endblock cuerpo%}
